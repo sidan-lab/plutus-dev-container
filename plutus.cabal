@@ -1,0 +1,94 @@
+cabal-version:      2.4
+name:               plutus
+version:            0.1.0.0
+synopsis:           Plutus source code for project development
+-- bug-reports:        https://github.com///issues
+license:            MIT
+author:             SIDANWhatever
+maintainer:         wongkahinhinson@gmail.com
+copyright:          2023
+extra-source-files: CHANGELOG.md
+
+common common-all
+   default-language: Haskell2010
+   build-depends:    
+                     , aeson
+                     , bytestring
+                     , base
+                     , containers
+                     , data-default
+                     , serialise
+                     , lens
+                     , generic-lens
+                     , microlens
+                     , freer-extras
+                     , strict-containers
+                     , text
+                     , transformers
+                     , transformers-except
+                     , cardano-api             >=1.35
+                     , cardano-cli             >=1.35
+                     , cardano-ledger-alonzo
+                     , cardano-ledger-babbage
+                     , cardano-ledger-core
+                     , cardano-ledger-shelley
+                     , cardano-slotting
+                     , cardano-crypto-class
+                     , cardano-node-emulator
+                     , ouroboros-consensus
+                     , ouroboros-network
+                     , plutus-core
+                     , plutus-contract
+                     , plutus-ledger
+                     , plutus-script-utils
+                     , plutus-tx-constraints
+                     , plutus-ledger-api       >=1.0.0
+                     , plutus-tx               >=1.0.0
+                     , plutus-tx-plugin        >=1.0.0
+                     , sidan-plutus-server
+                     , plutonomy
+   ghc-options:      -Wall -fno-warn-incomplete-patterns -fno-strictness -fno-specialise -fno-spec-constr -fplugin-opt PlutusTx.Plugin:defer-errors
+
+library
+   import:            common-all                   
+   exposed-modules:      Types
+                       , Utils
+                       , Common
+                       , BasicPolicy.Onchain
+                       , BasicPolicy.Offchain
+                       , BasicValidator.Onchain
+                       , BasicValidator.Offchain
+   hs-source-dirs:   src
+   ghc-options:     -Wall -fobject-code -fno-warn-incomplete-patterns -fno-ignore-interface-pragmas -fno-omit-interface-pragmas -fno-strictness -fno-spec-constr -fno-specialise
+
+common common-all-tests
+   import:           common-all
+   build-depends:    QuickCheck
+                   , tasty
+                   , tasty-hunit
+                   , plutus-simple-model
+   ghc-options:     -Wall -fobject-code -fno-warn-incomplete-patterns -fno-ignore-interface-pragmas -fno-omit-interface-pragmas -fno-strictness -fno-spec-constr -fno-specialise
+
+-- -- cabal repl test:trace-test
+test-suite integration-test
+    import:             common-all-tests
+    type:               exitcode-stdio-1.0
+    main-is:            IntegrationTest/Main.hs
+    hs-source-dirs:     tests
+    build-depends:      plutus
+                      , optparse-applicative
+
+common common-psm-tests
+   import:             common-all-tests
+   hs-source-dirs:     tests
+   build-depends:      plutus
+   other-modules:      UnitTest.Utils.FakePolicy
+                     , UnitTest.Utils.MockBasicValidator
+
+-- cabal repl test:unit-test
+test-suite unit-test
+   import:             common-psm-tests
+   type:               exitcode-stdio-1.0
+   main-is:            UnitTest/Main.hs
+   other-modules:      UnitTest.BasicPolicy
+                     , UnitTest.BasicValidator
