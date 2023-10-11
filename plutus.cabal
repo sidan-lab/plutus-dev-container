@@ -2,7 +2,7 @@ cabal-version:      2.4
 name:               plutus
 version:            0.1.0.0
 synopsis:           Plutus source code for project development
--- bug-reports:        https://github.com///issues
+bug-reports:        https://github.com/sidan-lab/plutus-dev-container/issues
 license:            MIT
 author:             SIDANWhatever
 maintainer:         wongkahinhinson@gmail.com
@@ -69,7 +69,7 @@ common common-all-tests
                    , plutus-simple-model
    ghc-options:     -Wall -fobject-code -fno-warn-incomplete-patterns -fno-ignore-interface-pragmas -fno-omit-interface-pragmas -fno-strictness -fno-spec-constr -fno-specialise
 
--- -- cabal repl test:trace-test
+-- -- cabal repl test:integration-test
 test-suite integration-test
     import:             common-all-tests
     type:               exitcode-stdio-1.0

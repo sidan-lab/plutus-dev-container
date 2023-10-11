@@ -3,7 +3,7 @@
   <h1>Plutus Development Template</h1>
 </div>
 
-A template for Plutus smart contract development with everything you need to get started quickly. This template streamlines your development process and provides a structured foundation for your smart contracts.
+A template for Plutus smart contract development with everything you need to get started quickly. This template streamlines your development process and provides a structured foundation for your smart contracts. With the dev container setup, you could get the pre-compiled linting support and import suggestion to streamline `PlutusTx` development.
 
 ## Features
 
@@ -44,6 +44,10 @@ You're ready to start developing your Plutus smart contracts! Use the provided s
 
    Ensure to update this README with specific information about your project.
 
+## Only Using the Dev Container
+
+Simply putting the `.devcontainer` into the root level of your building source code of `PlutusTx` would work!
+
 ## Directory Structure
 
 - `src/`: Your Plutus smart contract source files.
@@ -51,13 +55,9 @@ You're ready to start developing your Plutus smart contracts! Use the provided s
 - `scripts/`: Useful scripts for deployment, testing, and more.
 - `example/`: Example Plutus contracts for reference.
 
-## Contribution
-
-If you'd like to contribute to this project or report issues, please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
@@ -74,7 +74,3 @@ For support or inquiries, please contact @SIDANWhatever.
 ## Disclaimer
 
 This template is provided as a starting point for Plutus smart contract development. Please ensure that you understand the Cardano and Plutus development ecosystem and best practices before deploying smart contracts to a live network.
-
----
-
-![Powered by Plutus](powered-by-plutus.png)
